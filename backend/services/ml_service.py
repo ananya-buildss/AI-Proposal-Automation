@@ -1,17 +1,45 @@
 import os
 import joblib
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+# --------------------------------------------------
+# Project Paths
+# --------------------------------------------------
 
-MODEL_DIR = os.path.join(BASE_DIR, "ml", "models")
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-embedder = joblib.load(os.path.join(MODEL_DIR, "embedder.pkl"))
+PROJECT_ROOT = os.path.abspath(
+    os.path.join(CURRENT_DIR, "..", "..")
+)
 
-domain_model = joblib.load(os.path.join(MODEL_DIR, "domain_classifier.pkl"))
-complexity_model = joblib.load(os.path.join(MODEL_DIR, "complexity_classifier.pkl"))
-timeline_model = joblib.load(os.path.join(MODEL_DIR, "timeline_classifier.pkl"))
-budget_model = joblib.load(os.path.join(MODEL_DIR, "budget_classifier.pkl"))
+MODEL_DIR = os.path.join(PROJECT_ROOT, "ml", "models")
 
+# --------------------------------------------------
+# Load Models
+# --------------------------------------------------
+
+embedder = joblib.load(
+    os.path.join(MODEL_DIR, "embedder.pkl")
+)
+
+domain_model = joblib.load(
+    os.path.join(MODEL_DIR, "domain_classifier.pkl")
+)
+
+complexity_model = joblib.load(
+    os.path.join(MODEL_DIR, "complexity_classifier.pkl")
+)
+
+timeline_model = joblib.load(
+    os.path.join(MODEL_DIR, "timeline_classifier.pkl")
+)
+
+budget_model = joblib.load(
+    os.path.join(MODEL_DIR, "budget_classifier.pkl")
+)
+
+# --------------------------------------------------
+# Analyze Requirement
+# --------------------------------------------------
 
 def analyze_requirement(text):
 

@@ -2,25 +2,30 @@ import os
 import chromadb
 from sentence_transformers import SentenceTransformer
 
-# ===========================
-# Configuration
-# ===========================
+# ==================================================
+# Project Paths
+# ==================================================
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-VECTOR_DB_PATH = os.path.join(BASE_DIR, "ml", "vector_db")
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+PROJECT_ROOT = os.path.abspath(
+    os.path.join(CURRENT_DIR, "..", "..")
+)
+
+VECTOR_DB_PATH = os.path.join(PROJECT_ROOT, "ml", "vector_db")
 
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 COLLECTION_NAME = "projects"
 
-# ===========================
-# Load Model
-# ===========================
+# ==================================================
+# Load Embedding Model
+# ==================================================
 
 model = SentenceTransformer(EMBEDDING_MODEL)
 
-# ===========================
-# Connect Database
-# ===========================
+# ==================================================
+# Connect ChromaDB
+# ==================================================
 
 client = chromadb.PersistentClient(path=VECTOR_DB_PATH)
 
@@ -31,10 +36,9 @@ except Exception as e:
         f"Unable to load collection '{COLLECTION_NAME}'.\n{e}"
     )
 
-
-# ===========================
+# ==================================================
 # Retrieve Similar Projects
-# ===========================
+# ==================================================
 
 def retrieve_similar_projects(requirement: str, top_k: int = 3):
 
@@ -54,15 +58,10 @@ def retrieve_similar_projects(requirement: str, top_k: int = 3):
     for meta in results["metadatas"][0]:
 
         projects.append({
-
             "title": meta["title"],
-
             "domain": meta["domain"],
-
             "summary": meta["summary"],
-
             "tech_stack": meta["tech_stack"]
-
         })
 
     return projects
