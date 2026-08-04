@@ -1,5 +1,7 @@
 import React from "react";
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
 function StatCard({ icon, title, value }) {
     return (
         <div
@@ -14,10 +16,24 @@ function StatCard({ icon, title, value }) {
             }}
         >
             <div style={{ fontSize: "28px" }}>{icon}</div>
-            <div style={{ color: "#64748b", marginTop: "8px", fontSize: "14px" }}>
+
+            <div
+                style={{
+                    color: "#64748b",
+                    marginTop: "8px",
+                    fontSize: "14px",
+                }}
+            >
                 {title}
             </div>
-            <div style={{ fontWeight: "bold", fontSize: "18px", marginTop: "6px" }}>
+
+            <div
+                style={{
+                    fontWeight: "bold",
+                    fontSize: "18px",
+                    marginTop: "6px",
+                }}
+            >
                 {value || "-"}
             </div>
         </div>
@@ -88,9 +104,21 @@ function ProposalViewer({
                         }}
                     >
                         <h3>📌 {project.title}</h3>
-                        <p><strong>🌍 Domain:</strong> {project.domain}</p>
-                        <p><strong>📝 Summary:</strong> {project.summary}</p>
-                        <p><strong>💻 Tech Stack:</strong> {project.tech_stack?.join(", ")}</p>
+
+                        <p>
+                            <strong>🌍 Domain:</strong> {project.domain}
+                        </p>
+
+                        <p>
+                            <strong>📝 Summary:</strong> {project.summary}
+                        </p>
+
+                        <p>
+                            <strong>💻 Tech Stack:</strong>{" "}
+                            {Array.isArray(project.tech_stack)
+                                ? project.tech_stack.join(", ")
+                                : project.tech_stack}
+                        </p>
                     </div>
                 ))
             ) : (
@@ -99,10 +127,16 @@ function ProposalViewer({
 
             <h2 style={{ marginTop: "35px" }}>📥 Downloads</h2>
 
-            <div style={{ display: "flex", gap: "15px", marginBottom: "30px" }}>
+            <div
+                style={{
+                    display: "flex",
+                    gap: "15px",
+                    marginBottom: "30px",
+                }}
+            >
                 {docxDownload && (
                     <a
-                        href={`http://127.0.0.1:8000/${docxDownload}`}
+                        href={`${API_BASE}/${docxDownload}`}
                         target="_blank"
                         rel="noreferrer"
                     >
@@ -123,7 +157,7 @@ function ProposalViewer({
 
                 {pdfDownload && (
                     <a
-                        href={`http://127.0.0.1:8000/${pdfDownload}`}
+                        href={`${API_BASE}/${pdfDownload}`}
                         target="_blank"
                         rel="noreferrer"
                     >
