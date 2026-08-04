@@ -1,10 +1,20 @@
+import os
+
+print("APP ROOT CONTENTS:")
+print(os.listdir("/app"))
+
+if os.path.exists("/app/ml"):
+    print("ML FOLDER EXISTS")
+    print(os.listdir("/app/ml"))
+else:
+    print("ML FOLDER DOES NOT EXIST")
+
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-import os
 from datetime import datetime
 
 from services.gemini_service import (
