@@ -8,11 +8,12 @@ from sentence_transformers import SentenceTransformer
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-PROJECT_ROOT = os.path.abspath(
-    os.path.join(CURRENT_DIR, "..", "..")
-)
+PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
 
 VECTOR_DB_PATH = os.path.join(PROJECT_ROOT, "ml", "vector_db")
+
+print("VECTOR_DB_PATH =", VECTOR_DB_PATH)
+print("Exists?", os.path.exists(VECTOR_DB_PATH))
 
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 COLLECTION_NAME = "projects"

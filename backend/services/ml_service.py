@@ -7,34 +7,14 @@ PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
 
 MODEL_DIR = os.path.join(PROJECT_ROOT, "ml", "models")
 
-print("CURRENT_DIR =", CURRENT_DIR)
-print("PROJECT_ROOT =", PROJECT_ROOT)
 print("MODEL_DIR =", MODEL_DIR)
 print("Exists?", os.path.exists(MODEL_DIR))
 
-# --------------------------------------------------
-# Load Models
-# --------------------------------------------------
-
-embedder = joblib.load(
-    os.path.join(MODEL_DIR, "embedder.pkl")
-)
-
-domain_model = joblib.load(
-    os.path.join(MODEL_DIR, "domain_classifier.pkl")
-)
-
-complexity_model = joblib.load(
-    os.path.join(MODEL_DIR, "complexity_classifier.pkl")
-)
-
-timeline_model = joblib.load(
-    os.path.join(MODEL_DIR, "timeline_classifier.pkl")
-)
-
-budget_model = joblib.load(
-    os.path.join(MODEL_DIR, "budget_classifier.pkl")
-)
+embedder = joblib.load(os.path.join(MODEL_DIR, "embedder.pkl"))
+domain_model = joblib.load(os.path.join(MODEL_DIR, "domain_classifier.pkl"))
+complexity_model = joblib.load(os.path.join(MODEL_DIR, "complexity_classifier.pkl"))
+timeline_model = joblib.load(os.path.join(MODEL_DIR, "timeline_classifier.pkl"))
+budget_model = joblib.load(os.path.join(MODEL_DIR, "budget_classifier.pkl"))
 
 # --------------------------------------------------
 # Analyze Requirement
