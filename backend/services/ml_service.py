@@ -1,10 +1,6 @@
 import os
 import joblib
 
-# --------------------------------------------------
-# Project Paths
-# --------------------------------------------------
-
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 PROJECT_ROOT = os.path.abspath(
@@ -12,6 +8,11 @@ PROJECT_ROOT = os.path.abspath(
 )
 
 MODEL_DIR = os.path.join(PROJECT_ROOT, "ml", "models")
+
+print("CURRENT_DIR =", CURRENT_DIR)
+print("PROJECT_ROOT =", PROJECT_ROOT)
+print("MODEL_DIR =", MODEL_DIR)
+print("Exists?", os.path.exists(MODEL_DIR))
 
 # --------------------------------------------------
 # Load Models
