@@ -150,10 +150,13 @@ async def upload_pdf(file: UploadFile = File(...)):
 
         document_type = classify_document(extracted_text).strip().lower()
 
-        if "requirement" not in document_type:
+        # Accept Requirement and Business Proposal documents
+        allowed_types = ["requirement", "business proposal"]
+
+        if not any(doc_type in document_type for doc_type in allowed_types):
             raise HTTPException(
                 status_code=400,
-                detail="Invalid document. Please upload a valid software requirement document."
+                detail=f"Detected document type: {document_type}. Please upload a Requirement or Business Proposal document."
             )
 
         # --------------------------------------------
